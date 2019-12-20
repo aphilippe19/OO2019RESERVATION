@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_RESSOURCESPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AGENT">
+          <Key>
+            <PropertyRef Name="ID_AGENT" />
+          </Key>
+          <Property Name="ID_AGENT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MATRICULE_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOM_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRENOMS_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="SERVICE_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="FONCTION_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DEPARTEMENT_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="MDP_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="LOGIN_AGENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PROFIL_AGENT" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BUREAU">
+          <Key>
+            <PropertyRef Name="ID_BUREAU" />
+          </Key>
+          <Property Name="ID_BUREAU" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE_BUREAU" Type="nvarchar" MaxLength="50" />
+          <Property Name="LIBELLE_BUREAU" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUPERFICIE_BUREAU" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_PALIER" Type="int" Nullable="false" />
+          <Property Name="ID_SITE" Type="int" />
+        </EntityType>
+        <EntityType Name="DEMANDER">
+          <Key>
+            <PropertyRef Name="ID_DEMANDER" />
+          </Key>
+          <Property Name="ID_DEMANDER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_BUREAU" Type="int" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="datetime" />
+          <Property Name="DATE_FIN" Type="datetime" />
+          <Property Name="OBJET_REUNION" Type="nvarchar" MaxLength="50" />
+          <Property Name="NBRE_PERSON_INVITE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_AGENT" Type="int" Nullable="false" />
+          <Property Name="STATUT_DEMANDER" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE_EMISSION" Type="datetime" />
+          <Property Name="DATE_TRAITEMENT" Type="datetime" />
+          <Property Name="STATUT_REPORT" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MOBILIER">
+          <Key>
+            <PropertyRef Name="ID_MOBILIER" />
+          </Key>
+          <Property Name="ID_MOBILIER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE_MOBILIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="LIBELLE_MOBILIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="MARQUE_MOBILIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="MODELE_MOBILIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="NUMSERIE_MOBILIER" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PALIER">
+          <Key>
+            <PropertyRef Name="ID_PALIER" />
+          </Key>
+          <Property Name="ID_PALIER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE_PALIER" Type="nvarchar" MaxLength="50" />
+          <Property Name="LIBELLE_PALIER" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID_SITE" />
+          </Key>
+          <Property Name="ID_SITE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CODE_SITE" Type="nvarchar" MaxLength="50" />
+          <Property Name="LIBELLE_SITE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUPERFICIE_SITE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SOLLICITER">
+          <Key>
+            <PropertyRef Name="ID_SOLLICITER" />
+          </Key>
+          <Property Name="ID_SOLLICITER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_AGENT" Type="int" Nullable="false" />
+          <Property Name="ID_MOBILIER" Type="int" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="datetime" />
+          <Property Name="DATE_FIN" Type="datetime" />
+          <Property Name="OBJET_REUNION" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE_RETOUR" Type="datetime" />
+          <Property Name="MOTIF_RETOUR" Type="nvarchar" MaxLength="100" />
+          <Property Name="STATUT_SOLLICITER" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATE_EMISSION" Type="datetime" />
+          <Property Name="DATE_TRAITEMENT" Type="datetime" />
+          <Property Name="STATUT_REPORT" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MATRICULE_USER" Type="varchar" MaxLength="50" />
+          <Property Name="NOM_USER" Type="varchar" MaxLength="50" />
+          <Property Name="PRENOM_USER" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_BUREAU_PALIER">
+          <End Role="PALIER" Type="Self.PALIER" Multiplicity="1" />
+          <End Role="BUREAU" Type="Self.BUREAU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PALIER">
+              <PropertyRef Name="ID_PALIER" />
+            </Principal>
+            <Dependent Role="BUREAU">
+              <PropertyRef Name="ID_PALIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUREAU_SITE">
+          <End Role="SITE" Type="Self.SITE" Multiplicity="0..1" />
+          <End Role="BUREAU" Type="Self.BUREAU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="BUREAU">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEMANDER_AGENT">
+          <End Role="AGENT" Type="Self.AGENT" Multiplicity="1" />
+          <End Role="DEMANDER" Type="Self.DEMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENT">
+              <PropertyRef Name="ID_AGENT" />
+            </Principal>
+            <Dependent Role="DEMANDER">
+              <PropertyRef Name="ID_AGENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEMANDER_BUREAU">
+          <End Role="BUREAU" Type="Self.BUREAU" Multiplicity="1" />
+          <End Role="DEMANDER" Type="Self.DEMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUREAU">
+              <PropertyRef Name="ID_BUREAU" />
+            </Principal>
+            <Dependent Role="DEMANDER">
+              <PropertyRef Name="ID_BUREAU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLLICITER_AGENT">
+          <End Role="AGENT" Type="Self.AGENT" Multiplicity="1" />
+          <End Role="SOLLICITER" Type="Self.SOLLICITER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENT">
+              <PropertyRef Name="ID_AGENT" />
+            </Principal>
+            <Dependent Role="SOLLICITER">
+              <PropertyRef Name="ID_AGENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLLICITER_MOBILIER">
+          <End Role="MOBILIER" Type="Self.MOBILIER" Multiplicity="1" />
+          <End Role="SOLLICITER" Type="Self.SOLLICITER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOBILIER">
+              <PropertyRef Name="ID_MOBILIER" />
+            </Principal>
+            <Dependent Role="SOLLICITER">
+              <PropertyRef Name="ID_MOBILIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_BAC_GET_BUREAU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CODE_BUREAU" Type="nvarchar" Mode="In" />
+          <Parameter Name="LIBELLE_BUREAU" Type="nvarchar" Mode="In" />
+          <Parameter Name="SUPERFICIE_BUREAU" Type="nvarchar" Mode="In" />
+          <Parameter Name="ID_PALIER" Type="int" Mode="In" />
+          <Parameter Name="ID_SITE" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="varchar" Mode="In" />
+          <Parameter Name="CODE_BUREAU" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="varchar" Mode="In" />
+          <Parameter Name="CODE_MOBILIER" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_AGENT_DEMANDER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_AGENT_SOLLICITER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_DEMANDER_ENVOYE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="nvarchar" Mode="In" />
+          <Parameter Name="CODE_BUREAU" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GET_SOLLICITER_ENVOYE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MATRICULE_AGENT" Type="nvarchar" Mode="In" />
+          <Parameter Name="CODE_MOBILIER" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SEC_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LOG" Type="varchar" Mode="In" />
+          <Parameter Name="MDP" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UPDATE_RESERVER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_DEMANDER" Type="int" Mode="In" />
+          <Parameter Name="STATUT_DEMANDER" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_UPDATE_SOLLICITER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID_SOLLICITER" Type="int" Mode="In" />
+          <Parameter Name="STATUT_SOLLICITER" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DB_RESSOURCESPModelStoreContainer">
+          <EntitySet Name="AGENT" EntityType="Self.AGENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BUREAU" EntityType="Self.BUREAU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEMANDER" EntityType="Self.DEMANDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MOBILIER" EntityType="Self.MOBILIER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PALIER" EntityType="Self.PALIER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SITE" EntityType="Self.SITE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SOLLICITER" EntityType="Self.SOLLICITER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BUREAU_PALIER" Association="Self.FK_BUREAU_PALIER">
+            <End Role="PALIER" EntitySet="PALIER" />
+            <End Role="BUREAU" EntitySet="BUREAU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUREAU_SITE" Association="Self.FK_BUREAU_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="BUREAU" EntitySet="BUREAU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEMANDER_AGENT" Association="Self.FK_DEMANDER_AGENT">
+            <End Role="AGENT" EntitySet="AGENT" />
+            <End Role="DEMANDER" EntitySet="DEMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEMANDER_BUREAU" Association="Self.FK_DEMANDER_BUREAU">
+            <End Role="BUREAU" EntitySet="BUREAU" />
+            <End Role="DEMANDER" EntitySet="DEMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLLICITER_AGENT" Association="Self.FK_SOLLICITER_AGENT">
+            <End Role="AGENT" EntitySet="AGENT" />
+            <End Role="SOLLICITER" EntitySet="SOLLICITER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLLICITER_MOBILIER" Association="Self.FK_SOLLICITER_MOBILIER">
+            <End Role="MOBILIER" EntitySet="MOBILIER" />
+            <End Role="SOLLICITER" EntitySet="SOLLICITER" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_RESSOURCESPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_RESSOURCESPEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="SP_BAC_GET_BUREAU" ReturnType="Collection(DB_RESSOURCESPModel.SP_BAC_GET_BUREAU_Result)">
+            <Parameter Name="CODE_BUREAU" Mode="In" Type="String" />
+            <Parameter Name="LIBELLE_BUREAU" Mode="In" Type="String" />
+            <Parameter Name="SUPERFICIE_BUREAU" Mode="In" Type="String" />
+            <Parameter Name="ID_PALIER" Mode="In" Type="Int32" />
+            <Parameter Name="ID_SITE" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING" ReturnType="Collection(DB_RESSOURCESPModel.SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING_Result)">
+            <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+            <Parameter Name="CODE_BUREAU" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING" ReturnType="Collection(DB_RESSOURCESPModel.SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING_Result)">
+            <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+            <Parameter Name="CODE_MOBILIER" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_AGENT_DEMANDER" ReturnType="Collection(DB_RESSOURCESPModel.SP_GET_AGENT_DEMANDER_Result)">
+          <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_AGENT_SOLLICITER" ReturnType="Collection(DB_RESSOURCESPModel.SP_GET_AGENT_SOLLICITER_Result)">
+          <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_DEMANDER_ENVOYE" ReturnType="Collection(DB_RESSOURCESPModel.SP_GET_DEMANDER_ENVOYE_Result)">
+            <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+            <Parameter Name="CODE_BUREAU" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GET_SOLLICITER_ENVOYE" ReturnType="Collection(DB_RESSOURCESPModel.SP_GET_SOLLICITER_ENVOYE_Result)">
+            <Parameter Name="MATRICULE_AGENT" Mode="In" Type="String" />
+            <Parameter Name="CODE_MOBILIER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SEC_LOGIN" ReturnType="Collection(DB_RESSOURCESPModel.SP_SEC_LOGIN_Result)">
+            <Parameter Name="LOG" Mode="In" Type="String" />
+            <Parameter Name="MDP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_RESERVER">
+            <Parameter Name="ID_DEMANDER" Mode="In" Type="Int32" />
+            <Parameter Name="STATUT_DEMANDER" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_SOLLICITER">
+            <Parameter Name="ID_SOLLICITER" Mode="In" Type="Int32" />
+            <Parameter Name="STATUT_SOLLICITER" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AGENT" EntityType="DB_RESSOURCESPModel.AGENT" />
+          <EntitySet Name="BUREAU" EntityType="DB_RESSOURCESPModel.BUREAU" />
+          <EntitySet Name="DEMANDER" EntityType="DB_RESSOURCESPModel.DEMANDER" />
+          <EntitySet Name="MOBILIER" EntityType="DB_RESSOURCESPModel.MOBILIER" />
+          <EntitySet Name="PALIER" EntityType="DB_RESSOURCESPModel.PALIER" />
+          <EntitySet Name="SITE" EntityType="DB_RESSOURCESPModel.SITE" />
+          <EntitySet Name="SOLLICITER" EntityType="DB_RESSOURCESPModel.SOLLICITER" />
+          <EntitySet Name="USER" EntityType="DB_RESSOURCESPModel.USER" />
+          <AssociationSet Name="FK_DEMANDER_AGENT" Association="DB_RESSOURCESPModel.FK_DEMANDER_AGENT">
+            <End Role="AGENT" EntitySet="AGENT" />
+            <End Role="DEMANDER" EntitySet="DEMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLLICITER_AGENT" Association="DB_RESSOURCESPModel.FK_SOLLICITER_AGENT">
+            <End Role="AGENT" EntitySet="AGENT" />
+            <End Role="SOLLICITER" EntitySet="SOLLICITER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUREAU_PALIER" Association="DB_RESSOURCESPModel.FK_BUREAU_PALIER">
+            <End Role="PALIER" EntitySet="PALIER" />
+            <End Role="BUREAU" EntitySet="BUREAU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BUREAU_SITE" Association="DB_RESSOURCESPModel.FK_BUREAU_SITE">
+            <End Role="SITE" EntitySet="SITE" />
+            <End Role="BUREAU" EntitySet="BUREAU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DEMANDER_BUREAU" Association="DB_RESSOURCESPModel.FK_DEMANDER_BUREAU">
+            <End Role="BUREAU" EntitySet="BUREAU" />
+            <End Role="DEMANDER" EntitySet="DEMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SOLLICITER_MOBILIER" Association="DB_RESSOURCESPModel.FK_SOLLICITER_MOBILIER">
+            <End Role="MOBILIER" EntitySet="MOBILIER" />
+            <End Role="SOLLICITER" EntitySet="SOLLICITER" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="SP_BAC_GET_BUREAU_Result">
+          <Property Type="String" Name="CODE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SUPERFICIE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_PALIER" Nullable="false" />
+          <Property Type="Int32" Name="ID_SITE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING_Result">
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_BUREAU" Nullable="false" />
+          <Property Type="String" Name="CODE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SUPERFICIE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_PALIER" Nullable="false" />
+          <Property Type="Int32" Name="ID_SITE" Nullable="true" />
+          <Property Type="Int32" Name="ID_DEMANDER" Nullable="false" />
+          <Property Type="Int32" Name="ID_BUREAU1" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NBRE_PERSON_INVITE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="String" Name="STATUT_DEMANDER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING_Result">
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_MOBILIER" Nullable="false" />
+          <Property Type="String" Name="CODE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MARQUE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MODELE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NUMSERIE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_SOLLICITER" Nullable="false" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="Int32" Name="ID_MOBILIER1" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_RETOUR" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MOTIF_RETOUR" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="STATUT_SOLLICITER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_AGENT_DEMANDER_Result">
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_DEMANDER" Nullable="false" />
+          <Property Type="Int32" Name="ID_BUREAU" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NBRE_PERSON_INVITE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="String" Name="STATUT_DEMANDER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_BUREAU1" Nullable="false" />
+          <Property Type="String" Name="CODE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SUPERFICIE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_PALIER" Nullable="false" />
+          <Property Type="Int32" Name="ID_SITE" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_AGENT_SOLLICITER_Result">
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_SOLLICITER" Nullable="false" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="Int32" Name="ID_MOBILIER" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_RETOUR" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MOTIF_RETOUR" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="STATUT_SOLLICITER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_MOBILIER1" Nullable="false" />
+          <Property Type="String" Name="CODE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MARQUE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MODELE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NUMSERIE_MOBILIER" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_DEMANDER_ENVOYE_Result">
+          <Property Type="Int32" Name="ID_BUREAU" Nullable="false" />
+          <Property Type="String" Name="CODE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SUPERFICIE_BUREAU" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_PALIER" Nullable="false" />
+          <Property Type="Int32" Name="ID_SITE" Nullable="true" />
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_DEMANDER" Nullable="false" />
+          <Property Type="Int32" Name="ID_BUREAU1" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NBRE_PERSON_INVITE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="String" Name="STATUT_DEMANDER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GET_SOLLICITER_ENVOYE_Result">
+          <Property Type="Int32" Name="ID_MOBILIER" Nullable="false" />
+          <Property Type="String" Name="CODE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LIBELLE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MARQUE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MODELE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NUMSERIE_MOBILIER" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ID_SOLLICITER" Nullable="false" />
+          <Property Type="Int32" Name="ID_AGENT1" Nullable="false" />
+          <Property Type="Int32" Name="ID_MOBILIER1" Nullable="false" />
+          <Property Type="DateTime" Name="DATE_DEBUT" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_FIN" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OBJET_REUNION" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_RETOUR" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MOTIF_RETOUR" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="STATUT_SOLLICITER" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="DATE_EMISSION" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="DATE_TRAITEMENT" Nullable="true" Precision="23" />
+          <Property Type="String" Name="STATUT_REPORT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_SEC_LOGIN_Result">
+          <Property Type="Int32" Name="ID_AGENT" Nullable="false" />
+          <Property Type="String" Name="MATRICULE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NOM_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PRENOMS_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="SERVICE_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="FONCTION_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DEPARTEMENT_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MDP_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="LOGIN_AGENT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PROFIL_AGENT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="AGENT">
+          <Key>
+            <PropertyRef Name="ID_AGENT" />
+          </Key>
+          <Property Name="ID_AGENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MATRICULE_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NOM_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRENOMS_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SERVICE_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FONCTION_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEPARTEMENT_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MDP_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LOGIN_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PROFIL_AGENT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DEMANDER" Relationship="DB_RESSOURCESPModel.FK_DEMANDER_AGENT" FromRole="AGENT" ToRole="DEMANDER" />
+          <NavigationProperty Name="SOLLICITER" Relationship="DB_RESSOURCESPModel.FK_SOLLICITER_AGENT" FromRole="AGENT" ToRole="SOLLICITER" />
+        </EntityType>
+        <EntityType Name="BUREAU">
+          <Key>
+            <PropertyRef Name="ID_BUREAU" />
+          </Key>
+          <Property Name="ID_BUREAU" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE_BUREAU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LIBELLE_BUREAU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SUPERFICIE_BUREAU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PALIER" Type="Int32" Nullable="false" />
+          <Property Name="ID_SITE" Type="Int32" />
+          <NavigationProperty Name="PALIER" Relationship="DB_RESSOURCESPModel.FK_BUREAU_PALIER" FromRole="BUREAU" ToRole="PALIER" />
+          <NavigationProperty Name="SITE" Relationship="DB_RESSOURCESPModel.FK_BUREAU_SITE" FromRole="BUREAU" ToRole="SITE" />
+          <NavigationProperty Name="DEMANDER" Relationship="DB_RESSOURCESPModel.FK_DEMANDER_BUREAU" FromRole="BUREAU" ToRole="DEMANDER" />
+        </EntityType>
+        <EntityType Name="DEMANDER">
+          <Key>
+            <PropertyRef Name="ID_DEMANDER" />
+          </Key>
+          <Property Name="ID_DEMANDER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_BUREAU" Type="Int32" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="DateTime" Precision="3" />
+          <Property Name="DATE_FIN" Type="DateTime" Precision="3" />
+          <Property Name="OBJET_REUNION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NBRE_PERSON_INVITE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_AGENT" Type="Int32" Nullable="false" />
+          <Property Name="STATUT_DEMANDER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_EMISSION" Type="DateTime" Precision="3" />
+          <Property Name="DATE_TRAITEMENT" Type="DateTime" Precision="3" />
+          <Property Name="STATUT_REPORT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AGENT" Relationship="DB_RESSOURCESPModel.FK_DEMANDER_AGENT" FromRole="DEMANDER" ToRole="AGENT" />
+          <NavigationProperty Name="BUREAU" Relationship="DB_RESSOURCESPModel.FK_DEMANDER_BUREAU" FromRole="DEMANDER" ToRole="BUREAU" />
+        </EntityType>
+        <EntityType Name="MOBILIER">
+          <Key>
+            <PropertyRef Name="ID_MOBILIER" />
+          </Key>
+          <Property Name="ID_MOBILIER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE_MOBILIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LIBELLE_MOBILIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MARQUE_MOBILIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MODELE_MOBILIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NUMSERIE_MOBILIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SOLLICITER" Relationship="DB_RESSOURCESPModel.FK_SOLLICITER_MOBILIER" FromRole="MOBILIER" ToRole="SOLLICITER" />
+        </EntityType>
+        <EntityType Name="PALIER">
+          <Key>
+            <PropertyRef Name="ID_PALIER" />
+          </Key>
+          <Property Name="ID_PALIER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE_PALIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LIBELLE_PALIER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BUREAU" Relationship="DB_RESSOURCESPModel.FK_BUREAU_PALIER" FromRole="PALIER" ToRole="BUREAU" />
+        </EntityType>
+        <EntityType Name="SITE">
+          <Key>
+            <PropertyRef Name="ID_SITE" />
+          </Key>
+          <Property Name="ID_SITE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CODE_SITE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LIBELLE_SITE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SUPERFICIE_SITE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BUREAU" Relationship="DB_RESSOURCESPModel.FK_BUREAU_SITE" FromRole="SITE" ToRole="BUREAU" />
+        </EntityType>
+        <EntityType Name="SOLLICITER">
+          <Key>
+            <PropertyRef Name="ID_SOLLICITER" />
+          </Key>
+          <Property Name="ID_SOLLICITER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_AGENT" Type="Int32" Nullable="false" />
+          <Property Name="ID_MOBILIER" Type="Int32" Nullable="false" />
+          <Property Name="DATE_DEBUT" Type="DateTime" Precision="3" />
+          <Property Name="DATE_FIN" Type="DateTime" Precision="3" />
+          <Property Name="OBJET_REUNION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_RETOUR" Type="DateTime" Precision="3" />
+          <Property Name="MOTIF_RETOUR" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="STATUT_SOLLICITER" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_EMISSION" Type="DateTime" Precision="3" />
+          <Property Name="DATE_TRAITEMENT" Type="DateTime" Precision="3" />
+          <Property Name="STATUT_REPORT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AGENT" Relationship="DB_RESSOURCESPModel.FK_SOLLICITER_AGENT" FromRole="SOLLICITER" ToRole="AGENT" />
+          <NavigationProperty Name="MOBILIER" Relationship="DB_RESSOURCESPModel.FK_SOLLICITER_MOBILIER" FromRole="SOLLICITER" ToRole="MOBILIER" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="ID_USER" />
+          </Key>
+          <Property Name="ID_USER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MATRICULE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOM_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PRENOM_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DEMANDER_AGENT">
+          <End Type="DB_RESSOURCESPModel.AGENT" Role="AGENT" Multiplicity="1" />
+          <End Type="DB_RESSOURCESPModel.DEMANDER" Role="DEMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENT">
+              <PropertyRef Name="ID_AGENT" />
+            </Principal>
+            <Dependent Role="DEMANDER">
+              <PropertyRef Name="ID_AGENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLLICITER_AGENT">
+          <End Type="DB_RESSOURCESPModel.AGENT" Role="AGENT" Multiplicity="1" />
+          <End Type="DB_RESSOURCESPModel.SOLLICITER" Role="SOLLICITER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AGENT">
+              <PropertyRef Name="ID_AGENT" />
+            </Principal>
+            <Dependent Role="SOLLICITER">
+              <PropertyRef Name="ID_AGENT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUREAU_PALIER">
+          <End Type="DB_RESSOURCESPModel.PALIER" Role="PALIER" Multiplicity="1" />
+          <End Type="DB_RESSOURCESPModel.BUREAU" Role="BUREAU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PALIER">
+              <PropertyRef Name="ID_PALIER" />
+            </Principal>
+            <Dependent Role="BUREAU">
+              <PropertyRef Name="ID_PALIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BUREAU_SITE">
+          <End Type="DB_RESSOURCESPModel.SITE" Role="SITE" Multiplicity="0..1" />
+          <End Type="DB_RESSOURCESPModel.BUREAU" Role="BUREAU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SITE">
+              <PropertyRef Name="ID_SITE" />
+            </Principal>
+            <Dependent Role="BUREAU">
+              <PropertyRef Name="ID_SITE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DEMANDER_BUREAU">
+          <End Type="DB_RESSOURCESPModel.BUREAU" Role="BUREAU" Multiplicity="1" />
+          <End Type="DB_RESSOURCESPModel.DEMANDER" Role="DEMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BUREAU">
+              <PropertyRef Name="ID_BUREAU" />
+            </Principal>
+            <Dependent Role="DEMANDER">
+              <PropertyRef Name="ID_BUREAU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SOLLICITER_MOBILIER">
+          <End Type="DB_RESSOURCESPModel.MOBILIER" Role="MOBILIER" Multiplicity="1" />
+          <End Type="DB_RESSOURCESPModel.SOLLICITER" Role="SOLLICITER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MOBILIER">
+              <PropertyRef Name="ID_MOBILIER" />
+            </Principal>
+            <Dependent Role="SOLLICITER">
+              <PropertyRef Name="ID_MOBILIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_RESSOURCESPModelStoreContainer" CdmEntityContainer="DB_RESSOURCESPEntities">
+          <FunctionImportMapping FunctionImportName="SP_BAC_GET_BUREAU" FunctionName="DB_RESSOURCESPModel.Store.SP_BAC_GET_BUREAU">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_BAC_GET_BUREAU_Result">
+                <ScalarProperty Name="CODE_BUREAU" ColumnName="CODE_BUREAU" />
+                <ScalarProperty Name="LIBELLE_BUREAU" ColumnName="LIBELLE_BUREAU" />
+                <ScalarProperty Name="SUPERFICIE_BUREAU" ColumnName="SUPERFICIE_BUREAU" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING" FunctionName="DB_RESSOURCESPModel.Store.SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_BAC_PL_GET_DEMANDER_DETAILS_REPORTING_Result">
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_BUREAU" ColumnName="ID_BUREAU" />
+                <ScalarProperty Name="CODE_BUREAU" ColumnName="CODE_BUREAU" />
+                <ScalarProperty Name="LIBELLE_BUREAU" ColumnName="LIBELLE_BUREAU" />
+                <ScalarProperty Name="SUPERFICIE_BUREAU" ColumnName="SUPERFICIE_BUREAU" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="ID_DEMANDER" ColumnName="ID_DEMANDER" />
+                <ScalarProperty Name="ID_BUREAU1" ColumnName="ID_BUREAU1" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="NBRE_PERSON_INVITE" ColumnName="NBRE_PERSON_INVITE" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="STATUT_DEMANDER" ColumnName="STATUT_DEMANDER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING" FunctionName="DB_RESSOURCESPModel.Store.SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_BAC_PL_GET_SOLLICITER_DETAILS_REPORTING_Result">
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_MOBILIER" ColumnName="ID_MOBILIER" />
+                <ScalarProperty Name="CODE_MOBILIER" ColumnName="CODE_MOBILIER" />
+                <ScalarProperty Name="LIBELLE_MOBILIER" ColumnName="LIBELLE_MOBILIER" />
+                <ScalarProperty Name="MARQUE_MOBILIER" ColumnName="MARQUE_MOBILIER" />
+                <ScalarProperty Name="MODELE_MOBILIER" ColumnName="MODELE_MOBILIER" />
+                <ScalarProperty Name="NUMSERIE_MOBILIER" ColumnName="NUMSERIE_MOBILIER" />
+                <ScalarProperty Name="ID_SOLLICITER" ColumnName="ID_SOLLICITER" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="ID_MOBILIER1" ColumnName="ID_MOBILIER1" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="DATE_RETOUR" ColumnName="DATE_RETOUR" />
+                <ScalarProperty Name="MOTIF_RETOUR" ColumnName="MOTIF_RETOUR" />
+                <ScalarProperty Name="STATUT_SOLLICITER" ColumnName="STATUT_SOLLICITER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_AGENT_DEMANDER" FunctionName="DB_RESSOURCESPModel.Store.SP_GET_AGENT_DEMANDER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_GET_AGENT_DEMANDER_Result">
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_DEMANDER" ColumnName="ID_DEMANDER" />
+                <ScalarProperty Name="ID_BUREAU" ColumnName="ID_BUREAU" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="NBRE_PERSON_INVITE" ColumnName="NBRE_PERSON_INVITE" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="STATUT_DEMANDER" ColumnName="STATUT_DEMANDER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+                <ScalarProperty Name="ID_BUREAU1" ColumnName="ID_BUREAU1" />
+                <ScalarProperty Name="CODE_BUREAU" ColumnName="CODE_BUREAU" />
+                <ScalarProperty Name="LIBELLE_BUREAU" ColumnName="LIBELLE_BUREAU" />
+                <ScalarProperty Name="SUPERFICIE_BUREAU" ColumnName="SUPERFICIE_BUREAU" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_AGENT_SOLLICITER" FunctionName="DB_RESSOURCESPModel.Store.SP_GET_AGENT_SOLLICITER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_GET_AGENT_SOLLICITER_Result">
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_SOLLICITER" ColumnName="ID_SOLLICITER" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="ID_MOBILIER" ColumnName="ID_MOBILIER" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="DATE_RETOUR" ColumnName="DATE_RETOUR" />
+                <ScalarProperty Name="MOTIF_RETOUR" ColumnName="MOTIF_RETOUR" />
+                <ScalarProperty Name="STATUT_SOLLICITER" ColumnName="STATUT_SOLLICITER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+                <ScalarProperty Name="ID_MOBILIER1" ColumnName="ID_MOBILIER1" />
+                <ScalarProperty Name="CODE_MOBILIER" ColumnName="CODE_MOBILIER" />
+                <ScalarProperty Name="LIBELLE_MOBILIER" ColumnName="LIBELLE_MOBILIER" />
+                <ScalarProperty Name="MARQUE_MOBILIER" ColumnName="MARQUE_MOBILIER" />
+                <ScalarProperty Name="MODELE_MOBILIER" ColumnName="MODELE_MOBILIER" />
+                <ScalarProperty Name="NUMSERIE_MOBILIER" ColumnName="NUMSERIE_MOBILIER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_DEMANDER_ENVOYE" FunctionName="DB_RESSOURCESPModel.Store.SP_GET_DEMANDER_ENVOYE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_GET_DEMANDER_ENVOYE_Result">
+                <ScalarProperty Name="ID_BUREAU" ColumnName="ID_BUREAU" />
+                <ScalarProperty Name="CODE_BUREAU" ColumnName="CODE_BUREAU" />
+                <ScalarProperty Name="LIBELLE_BUREAU" ColumnName="LIBELLE_BUREAU" />
+                <ScalarProperty Name="SUPERFICIE_BUREAU" ColumnName="SUPERFICIE_BUREAU" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_DEMANDER" ColumnName="ID_DEMANDER" />
+                <ScalarProperty Name="ID_BUREAU1" ColumnName="ID_BUREAU1" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="NBRE_PERSON_INVITE" ColumnName="NBRE_PERSON_INVITE" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="STATUT_DEMANDER" ColumnName="STATUT_DEMANDER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GET_SOLLICITER_ENVOYE" FunctionName="DB_RESSOURCESPModel.Store.SP_GET_SOLLICITER_ENVOYE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_GET_SOLLICITER_ENVOYE_Result">
+                <ScalarProperty Name="ID_MOBILIER" ColumnName="ID_MOBILIER" />
+                <ScalarProperty Name="CODE_MOBILIER" ColumnName="CODE_MOBILIER" />
+                <ScalarProperty Name="LIBELLE_MOBILIER" ColumnName="LIBELLE_MOBILIER" />
+                <ScalarProperty Name="MARQUE_MOBILIER" ColumnName="MARQUE_MOBILIER" />
+                <ScalarProperty Name="MODELE_MOBILIER" ColumnName="MODELE_MOBILIER" />
+                <ScalarProperty Name="NUMSERIE_MOBILIER" ColumnName="NUMSERIE_MOBILIER" />
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="ID_SOLLICITER" ColumnName="ID_SOLLICITER" />
+                <ScalarProperty Name="ID_AGENT1" ColumnName="ID_AGENT1" />
+                <ScalarProperty Name="ID_MOBILIER1" ColumnName="ID_MOBILIER1" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="DATE_RETOUR" ColumnName="DATE_RETOUR" />
+                <ScalarProperty Name="MOTIF_RETOUR" ColumnName="MOTIF_RETOUR" />
+                <ScalarProperty Name="STATUT_SOLLICITER" ColumnName="STATUT_SOLLICITER" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SEC_LOGIN" FunctionName="DB_RESSOURCESPModel.Store.SP_SEC_LOGIN">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_RESSOURCESPModel.SP_SEC_LOGIN_Result">
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVER" FunctionName="DB_RESSOURCESPModel.Store.SP_UPDATE_RESERVER" />
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_SOLLICITER" FunctionName="DB_RESSOURCESPModel.Store.SP_UPDATE_SOLLICITER" />
+          <EntitySetMapping Name="AGENT">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.AGENT">
+              <MappingFragment StoreEntitySet="AGENT">
+                <ScalarProperty Name="PROFIL_AGENT" ColumnName="PROFIL_AGENT" />
+                <ScalarProperty Name="LOGIN_AGENT" ColumnName="LOGIN_AGENT" />
+                <ScalarProperty Name="MDP_AGENT" ColumnName="MDP_AGENT" />
+                <ScalarProperty Name="DEPARTEMENT_AGENT" ColumnName="DEPARTEMENT_AGENT" />
+                <ScalarProperty Name="FONCTION_AGENT" ColumnName="FONCTION_AGENT" />
+                <ScalarProperty Name="SERVICE_AGENT" ColumnName="SERVICE_AGENT" />
+                <ScalarProperty Name="PRENOMS_AGENT" ColumnName="PRENOMS_AGENT" />
+                <ScalarProperty Name="NOM_AGENT" ColumnName="NOM_AGENT" />
+                <ScalarProperty Name="MATRICULE_AGENT" ColumnName="MATRICULE_AGENT" />
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BUREAU">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.BUREAU">
+              <MappingFragment StoreEntitySet="BUREAU">
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+                <ScalarProperty Name="SUPERFICIE_BUREAU" ColumnName="SUPERFICIE_BUREAU" />
+                <ScalarProperty Name="LIBELLE_BUREAU" ColumnName="LIBELLE_BUREAU" />
+                <ScalarProperty Name="CODE_BUREAU" ColumnName="CODE_BUREAU" />
+                <ScalarProperty Name="ID_BUREAU" ColumnName="ID_BUREAU" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEMANDER">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.DEMANDER">
+              <MappingFragment StoreEntitySet="DEMANDER">
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="STATUT_DEMANDER" ColumnName="STATUT_DEMANDER" />
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="NBRE_PERSON_INVITE" ColumnName="NBRE_PERSON_INVITE" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="ID_BUREAU" ColumnName="ID_BUREAU" />
+                <ScalarProperty Name="ID_DEMANDER" ColumnName="ID_DEMANDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MOBILIER">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.MOBILIER">
+              <MappingFragment StoreEntitySet="MOBILIER">
+                <ScalarProperty Name="NUMSERIE_MOBILIER" ColumnName="NUMSERIE_MOBILIER" />
+                <ScalarProperty Name="MODELE_MOBILIER" ColumnName="MODELE_MOBILIER" />
+                <ScalarProperty Name="MARQUE_MOBILIER" ColumnName="MARQUE_MOBILIER" />
+                <ScalarProperty Name="LIBELLE_MOBILIER" ColumnName="LIBELLE_MOBILIER" />
+                <ScalarProperty Name="CODE_MOBILIER" ColumnName="CODE_MOBILIER" />
+                <ScalarProperty Name="ID_MOBILIER" ColumnName="ID_MOBILIER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PALIER">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.PALIER">
+              <MappingFragment StoreEntitySet="PALIER">
+                <ScalarProperty Name="LIBELLE_PALIER" ColumnName="LIBELLE_PALIER" />
+                <ScalarProperty Name="CODE_PALIER" ColumnName="CODE_PALIER" />
+                <ScalarProperty Name="ID_PALIER" ColumnName="ID_PALIER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SITE">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.SITE">
+              <MappingFragment StoreEntitySet="SITE">
+                <ScalarProperty Name="SUPERFICIE_SITE" ColumnName="SUPERFICIE_SITE" />
+                <ScalarProperty Name="LIBELLE_SITE" ColumnName="LIBELLE_SITE" />
+                <ScalarProperty Name="CODE_SITE" ColumnName="CODE_SITE" />
+                <ScalarProperty Name="ID_SITE" ColumnName="ID_SITE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLLICITER">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.SOLLICITER">
+              <MappingFragment StoreEntitySet="SOLLICITER">
+                <ScalarProperty Name="STATUT_REPORT" ColumnName="STATUT_REPORT" />
+                <ScalarProperty Name="DATE_TRAITEMENT" ColumnName="DATE_TRAITEMENT" />
+                <ScalarProperty Name="DATE_EMISSION" ColumnName="DATE_EMISSION" />
+                <ScalarProperty Name="STATUT_SOLLICITER" ColumnName="STATUT_SOLLICITER" />
+                <ScalarProperty Name="MOTIF_RETOUR" ColumnName="MOTIF_RETOUR" />
+                <ScalarProperty Name="DATE_RETOUR" ColumnName="DATE_RETOUR" />
+                <ScalarProperty Name="OBJET_REUNION" ColumnName="OBJET_REUNION" />
+                <ScalarProperty Name="DATE_FIN" ColumnName="DATE_FIN" />
+                <ScalarProperty Name="DATE_DEBUT" ColumnName="DATE_DEBUT" />
+                <ScalarProperty Name="ID_MOBILIER" ColumnName="ID_MOBILIER" />
+                <ScalarProperty Name="ID_AGENT" ColumnName="ID_AGENT" />
+                <ScalarProperty Name="ID_SOLLICITER" ColumnName="ID_SOLLICITER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="DB_RESSOURCESPModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="PRENOM_USER" ColumnName="PRENOM_USER" />
+                <ScalarProperty Name="NOM_USER" ColumnName="NOM_USER" />
+                <ScalarProperty Name="MATRICULE_USER" ColumnName="MATRICULE_USER" />
+                <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

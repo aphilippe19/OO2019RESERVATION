@@ -1,0 +1,66 @@
+﻿@model GestionRessourcesP.Models.DEMANDER
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DEMANDER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE_DEBUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE_DEBUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE_FIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE_FIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OBJET_REUNION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OBJET_REUNION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PERSON_INVITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PERSON_INVITE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AGENT.MATRICULE_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AGENT.MATRICULE_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BUREAU.CODE_BUREAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BUREAU.CODE_BUREAU)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_DEMANDER }) |
+    @Html.ActionLink("Retour à Liste", "Index")
+</p>

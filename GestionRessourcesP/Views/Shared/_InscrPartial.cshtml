@@ -1,0 +1,10 @@
+﻿@if (Session["nom"] != null)
+{
+
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("S'inscrire", "Create", "AGENTs", routeValues: null, htmlAttributes: new { id = "" })</li>
+    </ul>
+}

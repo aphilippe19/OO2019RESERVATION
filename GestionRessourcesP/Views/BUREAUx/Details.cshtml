@@ -1,0 +1,58 @@
+﻿@model GestionRessourcesP.Models.BUREAU
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BUREAU</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CODE_BUREAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CODE_BUREAU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIBELLE_BUREAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIBELLE_BUREAU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SUPERFICIE_BUREAU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SUPERFICIE_BUREAU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PALIER.CODE_PALIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PALIER.CODE_PALIER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SITE.CODE_SITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SITE.CODE_SITE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_BUREAU }) |
+    @Html.ActionLink("Retour à Liste", "Index")
+</p>

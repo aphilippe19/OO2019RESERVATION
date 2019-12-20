@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GestionRessourcesP.Models.SITE>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des Sites</h2>
+
+<p>
+    @Html.ActionLink("Ajouter", "Create", new {@class = "btn btn-default"})
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> Info-Liste des Sites </div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CODE_SITE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIBELLE_SITE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SUPERFICIE_SITE)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CODE_SITE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIBELLE_SITE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUPERFICIE_SITE)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ID_SITE }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_SITE }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_SITE }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

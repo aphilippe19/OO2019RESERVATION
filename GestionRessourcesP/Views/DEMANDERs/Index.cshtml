@@ -1,0 +1,89 @@
+﻿@model IEnumerable<GestionRessourcesP.Models.DEMANDER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste Des Demandent</h2>
+
+<p>
+    @Html.ActionLink("Ajouter une Réservation", "Create", new { @class = "btn btn-default" })
+</p>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_DEBUT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_FIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OBJET_REUNION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NBRE_PERSON_INVITE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.MATRICULE_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.NOM_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.PRENOMS_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BUREAU.CODE_BUREAU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BUREAU.LIBELLE_BUREAU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_EMISSION)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_DEBUT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_FIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OBJET_REUNION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NBRE_PERSON_INVITE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.MATRICULE_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.NOM_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.PRENOMS_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BUREAU.CODE_BUREAU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BUREAU.LIBELLE_BUREAU)
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.DATE_EMISSION)
+                </th>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ID_DEMANDER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Detail", "Details", new { id = item.ID_DEMANDER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_DEMANDER }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>

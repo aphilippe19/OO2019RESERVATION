@@ -1,0 +1,94 @@
+﻿@model IEnumerable<GestionRessourcesP.Models.SOLLICITER>
+
+@{
+   ViewBag.Title = "Index";
+}
+
+<h2>Liste à Régulariser</h2>
+
+<p>
+    @Html.ActionLink("Réserver Votre Equipement", "Create", new { @class = "btn btn-primary" })
+</p>
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_DEBUT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_FIN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OBJET_REUNION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.MATRICULE_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.NOM_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AGENT.PRENOMS_AGENT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MOBILIER.CODE_MOBILIER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MOBILIER.LIBELLE_MOBILIER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_RETOUR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MOTIF_RETOUR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DATE_EMISSION)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_DEBUT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_FIN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OBJET_REUNION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.MATRICULE_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.NOM_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AGENT.PRENOMS_AGENT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOBILIER.CODE_MOBILIER)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOBILIER.LIBELLE_MOBILIER)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_RETOUR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTIF_RETOUR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DATE_EMISSION)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ID_SOLLICITER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_SOLLICITER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_SOLLICITER }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>

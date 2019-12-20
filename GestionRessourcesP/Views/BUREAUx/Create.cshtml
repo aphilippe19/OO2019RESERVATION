@@ -1,0 +1,79 @@
+﻿@using GestionRessourcesP.Models
+@model ReservationSalleViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>DEMANDE-NOUVELLE SALLE REUNION</h4>
+        <div>
+            <h4 class="col-md-3">@Html.ActionLink("Ajouter un Site", "Create", "SITEs", new { @class = "btn btn-primary" })</h4>
+            
+
+            <h4 class="col-lg-offset-10">@Html.ActionLink("Ajouter un Palier", "Create", "PALIERs", new { @class = "btn btn-primary" })</h4>
+        </div>
+        <br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Info-Salle de Réunion</div>
+            <div class="panel-body">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CODE_BUREAU, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.CODE_BUREAU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CODE_BUREAU, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.LIBELLE_BUREAU, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.LIBELLE_BUREAU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LIBELLE_BUREAU, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SUPERFICIE_BUREAU, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.SUPERFICIE_BUREAU, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SUPERFICIE_BUREAU, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(model => model.LIBELLE_PALIER, "Palier", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("ID_PALIER", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LIBELLE_PALIER, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LIBELLE_SITE, "Site", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("ID_SITE", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LIBELLE_SITE, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+               </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Enregistrer" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div>
+                @Html.ActionLink("Retour à Liste", "Index", new { @class = "btn btn-primary" })
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

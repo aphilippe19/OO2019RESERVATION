@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GestionRessourcesP.Models.PALIER>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<p>
+    @Html.ActionLink("Ajouter", "Create", new { @class = "btn btn-default" })
+</p>
+<div class="panel panel-primary">
+    <div class="panel-heading"> Info-Liste des Paliers </div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CODE_PALIER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIBELLE_PALIER)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CODE_PALIER)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIBELLE_PALIER)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ID_PALIER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_PALIER }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_PALIER }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

@@ -1,0 +1,58 @@
+﻿@model GestionRessourcesP.Models.MOBILIER
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MOBILIER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CODE_MOBILIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CODE_MOBILIER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIBELLE_MOBILIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIBELLE_MOBILIER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MARQUE_MOBILIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARQUE_MOBILIER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MODELE_MOBILIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MODELE_MOBILIER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMSERIE_MOBILIER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMSERIE_MOBILIER)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_MOBILIER }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

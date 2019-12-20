@@ -1,0 +1,90 @@
+﻿@model GestionRessourcesP.Models.AGENT
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AGENT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MATRICULE_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MATRICULE_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOM_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOM_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRENOMS_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRENOMS_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SERVICE_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SERVICE_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FONCTION_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FONCTION_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTEMENT_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTEMENT_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MDP_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MDP_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LOGIN_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOGIN_AGENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROFIL_AGENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROFIL_AGENT)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Modifier", "Edit", new { id = Model.ID_AGENT }) |
+    @Html.ActionLink("Retour à la Liste", "Index")
+</p>

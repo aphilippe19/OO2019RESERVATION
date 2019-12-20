@@ -1,0 +1,62 @@
+﻿@model IEnumerable<GestionRessourcesP.Models.BUREAU>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Liste des Salles de Réunion</h2>
+
+<p>
+    @Html.ActionLink("Ajouter Une Salle Réunion", "Create", new { @class = "btn btn-default" })
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading"> Info-Liste des salles de Réunion </div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CODE_BUREAU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LIBELLE_BUREAU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SUPERFICIE_BUREAU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PALIER.CODE_PALIER)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SITE.CODE_SITE)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CODE_BUREAU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LIBELLE_BUREAU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SUPERFICIE_BUREAU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PALIER.CODE_PALIER)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SITE.CODE_SITE)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new { id = item.ID_BUREAU }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID_BUREAU }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Supprimer", "Delete", new { id = item.ID_BUREAU }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

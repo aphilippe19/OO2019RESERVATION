@@ -1,0 +1,134 @@
+﻿
+
+@{
+    ViewBag.Title = "ListTraitEquipement";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Liste des Traitements D'Equipement</h2>
+
+<style>
+    /* css table*/
+    .filterable {
+        margin-top: 15px;
+    }
+
+        .filterable .panel-heading .pull-right {
+            margin-top: -20px;
+        }
+
+        .filterable .filters input[disabled] {
+            background-color: transparent;
+            border: none;
+            cursor: auto;
+            box-shadow: none;
+            padding: 0;
+            height: auto;
+        }
+
+            .filterable .filters input[disabled]::-webkit-input-placeholder {
+                color: #333;
+            }
+
+            .filterable .filters input[disabled]::-moz-placeholder {
+                color: #333;
+            }
+
+            .filterable .filters input[disabled]:-ms-input-placeholder {
+                color: #333;
+            }
+
+    /* css table*/
+</style>
+
+<div>
+    <h4 class="col-md-3">@Html.ActionLink("Liste Réservation Salle", "ListTraitSalle", "Traitement", new { @class = "btn btn-primary" })</h4>
+</div>
+<br />
+<br /><hr />
+<div class="panel panel-default">
+
+    <div class="panel-heading">Info-Liste des Equipements</div>
+
+    <div class="panel-body">
+
+        
+
+        <div class="panel panel-primary filterable">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span>Liste des Bénéficiaires</h3>
+            </div>
+            <table class="table table-bordered table-striped" id="tab">
+                <thead>
+                    <tr class="filters">
+                        <th><input type="text" class="form-control" placeholder="Matricule" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Nom" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Prenoms" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Fonction" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Département" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Libellé Equipement" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Date Debut" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Date Fin" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Date Emission" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Statut" disabled> </th>
+                        <th><input type="text" class="form-control" placeholder="Options" disabled> </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+
+                        System.Data.DataTable dt = new System.Data.DataTable();
+                        dt = ViewBag.dt0;
+
+                        for (var i = 0; i <= dt.Rows.Count - 1; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @dt.Rows[i]["MATRICULE_AGENT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["NOM_AGENT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["PRENOMS_AGENT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["FONCTION_AGENT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["DEPARTEMENT_AGENT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["LIBELLE_MOBILIER"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["DATE_DEBUT"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["DATE_FIN"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["DATE_EMISSION"].ToString()
+                                </td>
+                                <td>
+                                    @dt.Rows[i]["STATUT_SOLLICITER"].ToString()
+                                </td>
+                                <td>
+
+                                   @* @Html.ActionLink("Traiter", "TraiterReservEquip", "Traitement", new { id = @dt.Rows[i]["MATRICULE_AGENT"].ToString() }, new { @class = "btn btn-default" })*@
+                                        @Html.ActionLink("Valider", "Valider_Equip", "SOLLICITERs", new { id = @dt.Rows[i]["ID_SOLLICITER"].ToString() }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("Mise en Attente", "MiseAttente_Equip", "SOLLICITERs", new { id = @dt.Rows[i]["ID_SOLLICITER"].ToString() }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("Différer", "Differer_Equip", "SOLLICITERs", new { id = @dt.Rows[i]["ID_SOLLICITER"].ToString() }, new { @class = "btn btn-primary" })
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
